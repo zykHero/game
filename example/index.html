@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>代码演示</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<!--简单的代码演示效果器  -->
+<textarea id="J_textarea"></textarea>
+<button id="submitVale">提交</button>
+<div id="J_iframewapper"></div>
+<script type="text/javascript">
+    var Jbtn = document.getElementById('submitVale');
+    var ifwapper = document.getElementById('J_iframewapper');//显示的div
+    var otextAr = document.getElementById('J_textarea');//输入的内容
+    Jbtn.addEventListener('click', function() {
+        var text = otextAr.value;
+        var _iframe = document.createElement("iframe");//创建一个ifarm
+        _iframe.setAttribute('id', 'iframer');//给ifarm增加id
+        ifwapper.innerHTML = '';//初始化显示区域的html
+        ifwapper.appendChild(_iframe);//把ifarm加入显示区域
+
+        var ifrw = (_iframe.contentWindow) ? _iframe.contentWindow :
+                (_iframe.contentDocument.document) ? _iframe.contentDocument.document :
+                        _iframe.contentDocument;
+
+        ifrw.document.open();
+        ifrw.document.write(text);
+        ifrw.document.close();
+    }, false);
+</script>
+</body>
+</html>
